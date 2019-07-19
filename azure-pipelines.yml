@@ -1,0 +1,11 @@
+jobs:
+- template: azure-pipelines-linux.yml
+  parameters:
+    images: [ 'archlinux/base', 'ubuntu:16.04', 'ubuntu:18.04', 'fedora:31' ]
+    pythonVersions: [ '3.5', '3.6', '3.7' ]
+    swVersions: [ '1.0.0', '1.1.0', '1.2.0', '1.3.0' ]
+- template: azure-pipelines-windows.yml
+  parameters:
+    images: [ 'vs2017-win2016', 'windows-2019' ]
+    pythonVersions: [ '3.5', '3.6', '3.7' ]
+    swVersions: [ '1.0.0', '1.1.0', '1.2.0', '1.3.0' ]

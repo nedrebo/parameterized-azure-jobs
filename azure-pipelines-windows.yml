@@ -1,0 +1,12 @@
+jobs:
+  - ${{ each image in parameters.images }}:
+    - ${{ each pythonVersion in parameters.pythonVersions }}:
+      - ${{ each swVersion in parameters.swVersions }}:
+        - job:
+          displayName: ${{ format('OS:{0} PY:{1} SW:{2}', image, pythonVersion, swVersion) }}
+          pool:
+            vmImage: ${{ image }}
+          steps:
+            - script: echo OS version &&
+                      wmic os get version &&
+                      echo Lets test SW ${{ swVersion }} on Python ${{ pythonVersion }}

@@ -1,0 +1,14 @@
+jobs:
+  - ${{ each image in parameters.images }}:
+    - ${{ each pythonVersion in parameters.pythonVersions }}:
+      - ${{ each swVersion in parameters.swVersions }}:
+        - job:
+          displayName: ${{ format('OS:{0} PY:{1} SW:{2}', image, pythonVersion, swVersion) }}
+          pool:
+            vmImage: ubuntu-16.04
+          steps:
+            - script: docker run
+                        ${{ image }}
+                        bash -c "echo OS info &&
+                                 cat /etc/os-release &&
+                                 echo Lets test SW ${{ swVersion }} on Python ${{ pythonVersion }}"
